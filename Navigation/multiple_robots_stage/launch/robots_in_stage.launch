@@ -44,7 +44,7 @@
 	<!-- <node name="rviz" pkg="rviz" type="rviz" /> -->
 	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find multiple_robots_stage)/rviz/rviz_config.rviz" />
 
-	<node name="navigator" pkg="alfa" type="navigator.py" output="screen" />
-	<node name="commander" pkg="alfa" type="commander.py" output="screen" />
+	<!-- <node name="navigator" pkg="multiple_robots_stage" type="navigator.py" output="screen" />
+	<node name="commander" pkg="multiple_robots_stage" type="commander.py" output="screen" /> -->
 
 </launch>
