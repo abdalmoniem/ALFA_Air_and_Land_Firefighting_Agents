@@ -4,7 +4,8 @@
 
 Navigation is a corner stone in ALFA's structure, it is divided into two main parts, path planning and path coverage.
 
-1. Path Planning
+1. Path Planning:
+	
 	path planning is the sub-module that is responsible for moving a robot from its location
 	to a target location, which it receives from the master robot, avoiding obstacles, along
 	the shortest path and using the least resources. It does so by implementing the
@@ -13,7 +14,8 @@ Navigation is a corner stone in ALFA's structure, it is divided into two main pa
 	algorithm using A* which uses a tree like structure to navigate all the nodes of the grid
 	of the map and find the shortest distance from its current location to the target
 	location.
-2. Path Coverage
+2. Path Coverage:
+	
 	path coverage is the action a robot takes once it arrives to its target location. It starts to
 	cover an area which its entry point was the target location, it implements a zig-zag
 	algorithm to cover all the sub areas of that particular area, this area is partitioned by the
