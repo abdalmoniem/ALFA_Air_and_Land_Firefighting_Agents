@@ -7,33 +7,21 @@ from std_msgs.msg import String
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 
 
-clients = []
-total_robots = 2
-
-
 def navigate(msg):
-    points_list = msg.data.split("-")
+    point = msg.data.split(",")
 
-    for data in points_list:
-        point = data.split(",")
+    x = float(point[0])
+    y = float(point[1])
 
-        rid = int(point[0])
-        x = float(point[1])
-        y = float(point[2])
+    print "sending the robot to (x:%.3f y:%.3f)" % (x, y)
+    print
 
-        print "sending robot_%d to (x:%.3f y:%.3f)" % (rid, x, y)
-        print
+    pose = [(x, y, 0.0), (0.0, 0.0, 0.0, 1.0)]
+    goal = goal_pose(pose)
 
-        if rid < len(clients):
-            pose = [(x, y, 0.0), (0.0, 0.0, 0.0, 1.0)]
-            goal = goal_pose(pose)
-
-            # clients[rid].cancel_all_goals()
-            clients[rid].send_goal(goal)
-            # clients[rid].wait_for_result()
-        else:
-            rospy.logerr(
-                "invalid robot id, please choose an id between 0 and %d" % (len(clients) - 1))
+    # client.cancel_all_goals()
+    client.send_goal(goal)
+    # client.wait_for_result()
 
 
 def goal_pose(pose):
@@ -58,11 +46,8 @@ if __name__ == '__main__':
     rospy.loginfo(
         "navigator node has been started and is listening on /commander topic.")
 
-    for i in range(total_robots):
-        clients.append(actionlib.SimpleActionClient(
-            '/robot_%d/move_base' % i, MoveBaseAction))
+    client = actionlib.SimpleActionClient('/move_base', MoveBaseAction)
 
-    for client in clients:
-        client.wait_for_server()
+    client.wait_for_server()
 
     rospy.spin()

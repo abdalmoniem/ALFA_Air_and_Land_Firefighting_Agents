@@ -29,4 +29,4 @@ Alternatively you can run the two nodes `navigator` and `commander` to set goal 
 
 	`0, 6, 1 - 1, 6, 2`
 
-	this will set the goal of robot_0 to the point (6, 1) and the goal of robot_1 to the point (6, 2)
+	this will set the goal of robot_0 to the point `(6, 1)` and the goal of robot_1 to the point `(6, 2)`
